@@ -619,118 +619,9 @@
         }
     </style>
 </head>
-    <script>
-function copyEmail(event, email) {
-    event.preventDefault();
-    
-    // Try modern clipboard API first
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(email)
-            .then(function() {
-                showEmailNotification('✅ Email copied! Paste into your email app.');
-            })
-            .catch(function() {
-                // If that fails, try fallback
-                fallbackCopy(email);
-            });
-    } else {
-        fallbackCopy(email);
-    }
-}
-
-function fallbackCopy(text) {
-    // Create temporary input element
-    const tempInput = document.createElement('input');
-    tempInput.value = text;
-    tempInput.style.position = 'fixed';
-    tempInput.style.top = '-1000px';
-    document.body.appendChild(tempInput);
-    
-    // Select and copy
-    tempInput.select();
-    tempInput.setSelectionRange(0, 99999);
-    
-    try {
-        const successful = document.execCommand('copy');
-        if (successful) {
-            showEmailNotification('✅ Email copied! Paste into your email app.');
-        } else {
-            showEmailNotification('📧 Email: mjpelle75@gmail.com');
-        }
-    } catch (err) {
-        showEmailNotification('📧 Email: mjpelle75@gmail.com');
-    }
-    
-    document.body.removeChild(tempInput);
-}
-
-function showEmailNotification(message) {
-    // Remove existing notification if any
-    const existing = document.querySelector('.email-notification');
-    if (existing) {
-        existing.remove();
-    }
-    
-    // Create notification
-    const notification = document.createElement('div');
-    notification.className = 'email-notification';
-    notification.textContent = message;
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #2E86AB;
-        color: white;
-        padding: 15px 30px;
-        border-radius: 10px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-        z-index: 10000;
-        font-family: 'Work Sans', sans-serif;
-        font-weight: 500;
-        font-size: 1rem;
-        animation: slideDown 0.3s ease;
-    `;
-    
-    document.body.appendChild(notification);
-    
-    // Remove after 4 seconds
-    setTimeout(function() {
-        notification.style.animation = 'slideUp 0.3s ease';
-        setTimeout(function() {
-            notification.remove();
-        }, 300);
-    }, 4000);
-}
-
-// Add animations
-const styleSheet = document.createElement('style');
-styleSheet.textContent = `
-    @keyframes slideDown {
-        from {
-            transform: translateX(-50%) translateY(-100px);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
-    }
-    
-    @keyframes slideUp {
-        from {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateX(-50%) translateY(-100px);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(styleSheet);
-</script>
 <body>
+ Email feature not working. Not opening new email to send:
+
     <div class="container">
         <!-- Hero Section -->
         <section class="hero">
@@ -740,29 +631,24 @@ document.head.appendChild(styleSheet);
                 <div class="tagline">Senior Product Strategy & Operations Leader</div>
                 
 <div class="contact-links">
-    <a href="#" 
-       onclick="copyEmail(event, 'mjpelle75@gmail.com')" 
-       class="email-link">
+    <a href="mailto:mjpelle75@gmail.com?subject=Opportunity%20for%20Michael%20Pellegrin" 
+       target="_blank" 
+       rel="noopener noreferrer">
         <span>✉</span> mjpelle75@gmail.com
-        <small style="display: block; font-size: 0.8rem; opacity: 0.8; margin-top: 3px;">Click to copy</small>
     </a>
-    <a href="#" onclick="return false;">
-        <span>📍</span> Austin, TX
-    </a>
-    <a href="https://www.linkedin.com/in/michaeljpellegrinstrategicproductmanager/" target="_blank" rel="noopener noreferrer">
-        <span>💼</span> LinkedIn
-    </a>
-</div>
-
-<div class="action-buttons">
-    <button class="btn btn-primary" onclick="window.print()">
-        📄 Download PDF
-    </button>
-    <a href="mailto:mjpelle75@gmail.com?subject=Product%20Management%20Opportunity&body=Hi%20Michael,%0D%0A%0D%0AI%20came%20across%20your%20resume%20and%20would%20like%20to%20discuss%20an%20opportunity." 
-       class="btn btn-secondary">
-        ✉️ Email Me
-    </a>
-</div>
+                    <a href="#" onclick="return false;">
+                        <span>📍</span> Austin, TX
+                    </a>
+                    <a href="https://www.linkedin.com/in/michaeljpellegrinstrategicproductmanager/" target="_blank">
+                        <span>💼</span> LinkedIn
+                    </a>
+                </div>
+                                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="window.print()">
+                        📄 Download PDF
+                    </button>
+                </div>
+            </div>
         </section>
 
         <div class="main-content">
