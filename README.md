@@ -1,2 +1,0 @@
-# resume
-Professional Interactive Resume
